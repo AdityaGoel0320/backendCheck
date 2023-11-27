@@ -1,0 +1,6 @@
+"name": "Aditya Goel" , 
+"email": "adityagoel0320@gmail.com" , 
+"phone": "9773773473",
+"work": student",
+"password":"zxc",
+"cpassword":"zxc"
