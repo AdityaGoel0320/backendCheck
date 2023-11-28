@@ -1,6 +1,10 @@
 // to use env file for storing inportant data
-let dotenv = require("dotenv");
-dotenv.config({path:"./config.env"})
+// let dotenv = require("dotenv");
+// dotenv.config({path:"./config.env"})
+
+
+require('dotenv').config({ path: './config.env' });
+
 
 
 let cors = require("cors")
