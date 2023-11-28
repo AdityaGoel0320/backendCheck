@@ -12,8 +12,8 @@ let port = process.env.PORT || 3000 ;
 
 
 // importing database connection ans model 
-require("./db/conn")
-let User= require("./model/userSchema")
+require("./src/db/conn")
+let User= require("./src/model/userSchema")
 
 
 let cookieParser = require("cookie-parser")
@@ -34,7 +34,7 @@ app.use(cors({
 
 
 // routing of pages
-app.use(require("./route/auth"))
+app.use(require("./src/route/auth"))
 
 app.listen(port, () => {
     console.log(`server connected on port ${port}`)
