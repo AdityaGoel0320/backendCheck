@@ -27,7 +27,7 @@ app.use(express.urlencoded({ extended: false }))
 // cors 
 // app.use(cors()) ; 
 app.use(cors({
-    origin: "https://frontend-check.vercel.app", // Replace with your front-end's URL
+    origin: "https://frontend-mern-beryl.vercel.app/", // Replace with your front-end's URL
     credentials: true, // Include credentials (cookies) in the request
   }));
   
