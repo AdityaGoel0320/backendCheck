@@ -12,8 +12,8 @@ let port = process.env.PORT || 3000 ;
 
 
 // importing database connection ans model 
-require("./src/db/conn")
-let User= require("./src/model/userSchema")
+require("./db/conn")
+let User= require("./model/userSchema")
 
 
 let cookieParser = require("cookie-parser")
@@ -27,14 +27,14 @@ app.use(express.urlencoded({ extended: false }))
 // cors 
 // app.use(cors()) ; 
 app.use(cors({
-    origin: "https://frontend-check.vercel.app", // Replace with your front-end's URL
+    origin: "http://localhost:3000", // Replace with your front-end's URL
     credentials: true, // Include credentials (cookies) in the request
   }));
   
 
 
 // routing of pages
-app.use(require("./src/route/auth"))
+app.use(require("./route/auth"))
 
 app.listen(port, () => {
     console.log(`server connected on port ${port}`)
