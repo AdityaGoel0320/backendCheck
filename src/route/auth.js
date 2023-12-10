@@ -119,6 +119,7 @@ router.post("/signin", async (req, res) => {
                     httpOnly: true,
                     sameSite: 'None',
                     path: '/', // Set the path as needed for your application
+                    secure: true ,
                     // Add more options as needed, e.g., secure: true for HTTPS
                 };
 
