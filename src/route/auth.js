@@ -74,7 +74,7 @@ router.post("/signin", async (req, res) => {
             const cookieOptions = {
                 httpOnly: true,
                 sameSite: 'strict',
-                path: 'https://frontend-mern-beryl.vercel.app/', // Set the path as needed for your application
+                path: 'https://frontend-mern-beryl.vercel.app', // Set the path as needed for your application
             };
             // now to save this token so we add in cookie in login page
             res.cookie("jwtLogin", loginNewToken, cookieOptions);
