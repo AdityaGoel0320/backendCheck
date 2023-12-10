@@ -55,6 +55,45 @@ router.post("/register", async (req, res) => {
 });
 
 
+// router.post("/signin", async (req, res) => {
+//     try {
+//         const { email, password } = req.body;
+
+//         // Checking if the given data is not empty
+//         if (!email || !password) {
+//             return res.status(400).json({ error: "Enter details properly for sign in" });
+//         }
+
+//         const userLogin = await User.findOne({ email: email });
+
+//         if (userLogin) {
+//             const passwordIsMatch = await bcrypt.compare(password, userLogin.password);
+
+//             let loginNewToken = await userLogin.generateAuthToken();
+
+//             const cookieOptions = {
+//                 httpOnly: true,
+//                 sameSite: 'strict',
+//                 path: 'https://frontend-mern-beryl.vercel.app', // Set the path as needed for your application
+//             };
+//             // now to save this token so we add in cookie in login page
+//             res.cookie("jwtLogin", loginNewToken, cookieOptions);
+
+//             if (!passwordIsMatch) {
+//                 return res.status(400).json({ error: "Invalid credentials wrong password" });
+//             } else {
+//                 return res.status(200).json({ message: "User logged in successfully" });
+//             }
+//         } else {
+//             return res.status(400).json({ error: "User is not registered" });
+//         }
+//     } catch (error) {
+//         console.log(error);
+//         res.status(500).json({ error: "Error in signing in" });
+//     }
+// });
+
+
 router.post("/signin", async (req, res) => {
     try {
         const { email, password } = req.body;
@@ -69,19 +108,22 @@ router.post("/signin", async (req, res) => {
         if (userLogin) {
             const passwordIsMatch = await bcrypt.compare(password, userLogin.password);
 
-            let loginNewToken = await userLogin.generateAuthToken();
-
-            const cookieOptions = {
-                httpOnly: true,
-                sameSite: 'strict',
-                path: 'https://frontend-mern-beryl.vercel.app', // Set the path as needed for your application
-            };
-            // now to save this token so we add in cookie in login page
-            res.cookie("jwtLogin", loginNewToken, cookieOptions);
-
             if (!passwordIsMatch) {
                 return res.status(400).json({ error: "Invalid credentials wrong password" });
             } else {
+                // Generate and set a new authentication token
+                const loginNewToken = await userLogin.generateAuthToken();
+
+                // Set the cookie with the generated token
+                const cookieOptions = {
+                    httpOnly: false,
+                    path: '/', // Set the path as needed for your application
+                    // Add more options as needed, e.g., secure: true for HTTPS
+                };
+
+                // Set the cookie
+                res.cookie("jwtLogin", loginNewToken, cookieOptions);
+
                 return res.status(200).json({ message: "User logged in successfully" });
             }
         } else {
