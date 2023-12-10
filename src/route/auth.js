@@ -116,8 +116,9 @@ router.post("/signin", async (req, res) => {
 
                 // Set the cookie with the generated token
                 const cookieOptions = {
-                    httpOnly: false,
-                    path: '/', // Set the path as needed for your application
+                    httpOnly: true,
+                    sameSite: 'None',
+                    path: 'https://frontend-mern-beryl.vercel.app/', // Set the path as needed for your application
                     // Add more options as needed, e.g., secure: true for HTTPS
                 };
 
