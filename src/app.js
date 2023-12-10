@@ -26,11 +26,14 @@ app.use(express.urlencoded({ extended: false }))
 
 // cors 
 // app.use(cors()) ; 
+// Enable CORS for a specific origin
 app.use(cors({
-    origin: "https://frontend-mern-beryl.vercel.app/", // Replace with your front-end's URL
-    credentials: true, // Include credentials (cookies) in the request
-  }));
-  
+  origin: 'https://frontend-mern-beryl.vercel.app',
+  methods: 'GET,HEAD,PUT,PATCH,POST,DELETE',
+  credentials: true,  // Enable credentials (cookies, authorization headers, etc.)
+  optionsSuccessStatus: 204,  // Set the status code for successful preflight requests
+}));
+
 
 
 // routing of pages
